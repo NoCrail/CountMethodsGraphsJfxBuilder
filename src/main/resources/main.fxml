@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <Button fx:id="buildBtn" layoutX="21.0" layoutY="635.0" mnemonicParsing="false" text="Build" />
+      <ImageView fx:id="imgView" fitHeight="600.0" fitWidth="800.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField layoutX="771.0" layoutY="640.0" prefHeight="27.0" prefWidth="50.0" text="2.5" fx:id="xAxisRightField" />
+      <TextField fx:id="yAxisTopField" layoutX="733.0" layoutY="613.0" prefHeight="27.0" prefWidth="50.0" text="4.0" />
+      <Label layoutX="742.0" layoutY="694.0" text="Y axis" />
+      <Label layoutX="667.0" layoutY="645.0" text="X axis" />
+      <TextField layoutX="700.0" layoutY="640.0" prefHeight="27.0" prefWidth="50.0" text="0.5" fx:id="xAxisLeftField" />
+      <TextField fx:id="yAxisBotField" layoutX="733.0" layoutY="667.0" prefHeight="27.0" prefWidth="50.0" text="0.0" />
+      <CheckBox fx:id="modCheck" layoutX="119.0" layoutY="645.0" mnemonicParsing="false" text="ModEuler" />
+      <CheckBox fx:id="recountCheck" layoutX="119.0" layoutY="672.0" mnemonicParsing="false" text="RecountEuler" />
+      <CheckBox fx:id="rightDiffsCheck" layoutX="239.0" layoutY="645.0" mnemonicParsing="false" text="RightDiffEuler" />
+      <CheckBox fx:id="leftDiffsCheck" disable="true" layoutX="239.0" layoutY="672.0" mnemonicParsing="false" text="LeftDiffEuler" />
+      <CheckBox fx:id="centralDiffsCheck" layoutX="239.0" layoutY="702.0" mnemonicParsing="false" text="CentralDiffEuler" />
+      <Label layoutX="480.0" layoutY="618.0" text="y'=y/(2x+y-4ln(x))" />
+      <Label layoutX="486.0" layoutY="640.0" text="1&lt;=x&lt;=2 y(1)=1" />
+      <Label layoutX="128.0" layoutY="702.0" text="h=" />
+      <TextField fx:id="hField" layoutX="156.0" layoutY="697.0" prefHeight="27.0" prefWidth="50.0" text="0.1" />
+   </children>
+</Pane>
