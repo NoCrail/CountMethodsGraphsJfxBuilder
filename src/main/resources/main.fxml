@@ -19,11 +19,12 @@
       <CheckBox fx:id="modCheck" layoutX="119.0" layoutY="645.0" mnemonicParsing="false" text="ModEuler" />
       <CheckBox fx:id="recountCheck" layoutX="119.0" layoutY="672.0" mnemonicParsing="false" text="RecountEuler" />
       <CheckBox fx:id="rightDiffsCheck" layoutX="239.0" layoutY="645.0" mnemonicParsing="false" text="RightDiffEuler" />
-      <CheckBox fx:id="leftDiffsCheck" disable="true" layoutX="239.0" layoutY="672.0" mnemonicParsing="false" text="LeftDiffEuler" />
-      <CheckBox fx:id="centralDiffsCheck" layoutX="239.0" layoutY="702.0" mnemonicParsing="false" text="CentralDiffEuler" />
+      <CheckBox fx:id="centralDiffsCheck" layoutX="239.0" layoutY="672.0" mnemonicParsing="false" text="CentralDiffEuler" />
       <Label layoutX="480.0" layoutY="618.0" text="y'=y/(2x+y-4ln(x))" />
       <Label layoutX="486.0" layoutY="640.0" text="1&lt;=x&lt;=2 y(1)=1" />
-      <Label layoutX="128.0" layoutY="702.0" text="h=" />
-      <TextField fx:id="hField" layoutX="156.0" layoutY="697.0" prefHeight="27.0" prefWidth="50.0" text="0.1" />
+      <Label layoutX="491.0" layoutY="672.0" text="h=" />
+      <TextField fx:id="hField" layoutX="519.0" layoutY="667.0" prefHeight="27.0" prefWidth="50.0" text="0.1" />
+      <CheckBox fx:id="adamsCheck" layoutX="119.0" layoutY="702.0" mnemonicParsing="false" text="Adams" />
+      <CheckBox fx:id="rungeKuttaCheck" layoutX="239.0" layoutY="702.0" mnemonicParsing="false" text="RungeKutta" />
    </children>
 </Pane>

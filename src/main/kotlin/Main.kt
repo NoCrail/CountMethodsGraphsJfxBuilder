@@ -12,7 +12,7 @@ class Main : Application() {
     val layout = "main.fxml"
 
     override fun start(primaryStage: Stage?) {
-        //System.setProperty("prism.lcdtext", "false") // for beautiful fonts on linux
+        System.setProperty("prism.lcdtext", "false") // for beautiful fonts on linux
         primaryStage?.scene = Scene(load<Parent?>(Main.javaClass.getResource(layout)))
         primaryStage?.show()
     }
