@@ -51,8 +51,8 @@ class MainController {
             plot = setPlotParams(axisParams)
 
             val h = buildOpts.h
-            val x: DoubleArray = DoubleArray((1/h).toInt()+1)
-            val y: DoubleArray = DoubleArray((1/h).toInt()+1)
+            val x = DoubleArray((1/h).toInt()+1)
+            val y = DoubleArray((1/h).toInt()+1)
             x[0] = 1.0
             y[0] = 1.0
             for (i in 0..x.size-2){
@@ -61,32 +61,32 @@ class MainController {
 
 
             if(buildOpts.rightDiffs){
-                val data = getRightDiffsData(x, y.clone(), x.size, h)
+                val data = getRightDiffsData(x, y.clone(), h)
                 plot.series("RightD", data, Plot.seriesOpts().marker(Plot.Marker.NONE).color(Color.BLACK))
             }
 
             if(buildOpts.centralDiffs){
-                val data = getCentralDiffsData(x, y.clone(), x.size, h)
+                val data = getCentralDiffsData(x, y.clone(), h)
                 plot.series("CentralD", data, Plot.seriesOpts().marker(Plot.Marker.NONE).color(Color.CYAN))
             }
 
             if(buildOpts.mod){
-                val data = getModData(x, y.clone(), x.size, h)
+                val data = getModData(x, y.clone(), h)
                 plot.series("Mod", data, Plot.seriesOpts().marker(Plot.Marker.NONE).color(Color.GREEN))
             }
 
             if(buildOpts.recount){
-                val data = getRecountData(x, y.clone(), x.size, h)
+                val data = getRecountData(x, y.clone(), h)
                 plot.series("Recount", data, Plot.seriesOpts().marker(Plot.Marker.NONE).color(Color.ORANGE))
             }
 
             if(buildOpts.rungeKutta){
-                val data = getRungeKuttaData(x, y.clone(), x.size, h)
+                val data = getRungeKuttaData(x, y.clone(), h)
                 plot.series("RungeKutta", data, Plot.seriesOpts().marker(Plot.Marker.NONE).color(Color.PINK))
             }
 
             if(buildOpts.adams){
-                val data = getAdamsData(x, y.clone(), x.size, h)
+                val data = getAdamsData(x, y.clone(), h)
                 plot.series("Adams", data, Plot.seriesOpts().marker(Plot.Marker.NONE).color(Color.MAGENTA))
             }
 
@@ -99,7 +99,7 @@ class MainController {
             } else {
                 val alert = Alert(Alert.AlertType.INFORMATION)
                 alert.title = "Хоспаде"
-                alert.headerText = "Шо за придурок"
+                alert.headerText = "Ну чо ты делаешь"
                 alert.contentText = "Выбери хоть чонить. Чуть прогу не повалил"
                 alert.showAndWait()
             }
@@ -116,7 +116,7 @@ class MainController {
         }
     }
 
-    fun getAxisParams(): AxisParams{
+    private fun getAxisParams(): AxisParams{
         val xLSize = xAxisLeftField.text.toDouble()
         val xRSize = xAxisRightField.text.toDouble()
         val yTSize = yAxisTopField.text.toDouble()
@@ -124,21 +124,20 @@ class MainController {
         return AxisParams(xLSize, xRSize, yTSize, yBSize)
     }
 
-    fun setPlotParams(axisParams: AxisParams): Plot{
-        val plot = Plot.plot(Plot.plotOpts()
+    private fun setPlotParams(axisParams: AxisParams): Plot{
+        return Plot.plot(Plot.plotOpts()
                 .title("PG")
                 .legend(Plot.LegendFormat.BOTTOM))
                 .xAxis("x", Plot.axisOpts().range(axisParams.xLSize, axisParams.xRSize))
                 .yAxis("y", Plot.axisOpts().range(axisParams.yBSize, axisParams.yTSize))
-        return plot
     }
 
-    fun getBuildOpts(): BuildOpts{
+    private fun getBuildOpts(): BuildOpts{
         return BuildOpts(modCheck.isSelected, recountCheck.isSelected, rightDiffsCheck.isSelected, centralDiffsCheck.isSelected, adamsCheck.isSelected, rungeKuttaCheck.isSelected, hField.text.toDouble())
     }
 
-    fun getRightDiffsData(x: DoubleArray, y:DoubleArray, n: Int, h: Double): Plot.Data{
-        val yRD = eulerRightDiffs(x, y, x.size, h)
+    private fun getRightDiffsData(x: DoubleArray, y: DoubleArray, h: Double): Plot.Data{
+        val yRD = eulerRightDiffs(x, y, h)
         val data = Plot.data()
         for (i in 0..x.size - 1) {
             data.xy(x[i], yRD[i])
@@ -146,8 +145,8 @@ class MainController {
         return data
     }
 
-    fun getCentralDiffsData(x: DoubleArray, y:DoubleArray, n: Int, h: Double): Plot.Data{
-        val yRD = eulerCentralDiffs(x, y, x.size, h)
+    private fun getCentralDiffsData(x: DoubleArray, y: DoubleArray, h: Double): Plot.Data{
+        val yRD = eulerCentralDiffs(x, y, h)
         val data = Plot.data()
         for (i in 0..x.size - 1) {
             data.xy(x[i], yRD[i])
@@ -155,8 +154,8 @@ class MainController {
         return data
     }
 
-    fun getModData(x: DoubleArray, y:DoubleArray, n: Int, h: Double): Plot.Data{
-        val yRD = eulerMod(x, y, x.size, h)
+    private fun getModData(x: DoubleArray, y: DoubleArray, h: Double): Plot.Data{
+        val yRD = eulerMod(x, y, h)
         val data = Plot.data()
         for (i in 0..x.size - 1) {
             data.xy(x[i], yRD[i])
@@ -164,8 +163,8 @@ class MainController {
         return data
     }
 
-    fun getRecountData(x: DoubleArray, y:DoubleArray, n: Int, h: Double): Plot.Data{
-        val yRD = eulerRecount(x, y, x.size, h)
+    private fun getRecountData(x: DoubleArray, y: DoubleArray, h: Double): Plot.Data{
+        val yRD = eulerRecount(x, y, h)
         val data = Plot.data()
         for (i in 0..x.size - 1) {
             data.xy(x[i], yRD[i])
@@ -173,8 +172,8 @@ class MainController {
         return data
     }
 
-    fun getRungeKuttaData(x: DoubleArray, y: DoubleArray, n: Int, h: Double): Plot.Data{
-        val yRD = rungeKutta(x, y, x.size, h)
+    fun getRungeKuttaData(x: DoubleArray, y: DoubleArray, h: Double): Plot.Data{
+        val yRD = rungeKutta(x, y, h)
         val data = Plot.data()
         for (i in 0..x.size - 1) {
             data.xy(x[i], yRD[i])
@@ -182,8 +181,8 @@ class MainController {
         return data
     }
 
-    fun getAdamsData(x: DoubleArray, y: DoubleArray, n: Int, h: Double): Plot.Data{
-        val yRD = adams(x, y, x.size, h)
+    fun getAdamsData(x: DoubleArray, y: DoubleArray, h: Double): Plot.Data{
+        val yRD = adams(x, y, h)
         val data = Plot.data()
         for (i in 0..x.size - 1) {
             data.xy(x[i], yRD[i])

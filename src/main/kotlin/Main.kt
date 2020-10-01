@@ -3,13 +3,12 @@ import javafx.fxml.FXMLLoader.load
 import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import java.awt.Color
 
 
 
 class Main : Application() {
 
-    val layout = "main.fxml"
+    private val layout = "main.fxml"
 
     override fun start(primaryStage: Stage?) {
         System.setProperty("prism.lcdtext", "false") // for beautiful fonts on linux
